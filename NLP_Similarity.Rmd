@@ -1,0 +1,329 @@
+# Load Libraries
+```{r}
+require(data.table)
+require(quanteda)
+require(readtext)
+require(quanteda.textstats)
+require(quanteda.corpora)
+require(stopwords)
+require(tidytext)
+require(dplyr)
+require(stringr)
+require(text2vec)
+require(qlcMatrix)
+```
+
+# Construct 1 - Dictionary
+```{r}
+#adjust to the txt folder in the applicable partner folder
+mypath = "/Users/martinrehm/Documents/Rese@rch/network(s)/Uni Bern/OnlineModul/NLP_Workshop/dictionaries/construct1/"
+path_data <- system.file(mypath, package = "readtext")
+construct <- readtext(paste0(mypath),
+                    docvarsfrom = "filenames", 
+                    docvarnames = c("unit", "docNum"),
+                    dvsep = "_", 
+                    )
+
+cc1 <- corpus(construct)
+rm(construct)
+cc1_tokens <- quanteda::tokens(cc1, remove_punct = T, remove_symbols = T, remove_numbers = T)
+
+# remove stopwords
+cc1_tokens <- tokens_select(cc1_tokens, stopwords("de"), selection = "remove", padding = FALSE)
+
+# DFM
+dfm_cc1 <- dfm(cc1_tokens, tolower = F)
+cc1_freq <- textstat_frequency(dfm_cc1)
+cc1_stop <- subset(cc1_freq, frequency < 3)
+cc1_stop <- cc1_stop$feature
+cc1_tokens <- tokens_select(cc1_tokens, cc1_stop, selection = "remove", padding = FALSE)
+dfm_cc1 <- dfm(cc1_tokens, tolower = T)
+cc1_freq <- textstat_frequency(dfm_cc1)
+```
+
+# Construct 2 - Dictionary
+```{r}
+#adjust to the txt folder in the applicable partner folder
+mypath = "/Users/martinrehm/Documents/Rese@rch/network(s)/Uni Bern/OnlineModul/NLP_Workshop/dictionaries/construct2/"
+path_data <- system.file(mypath, package = "readtext")
+construct <- readtext(paste0(mypath),
+                    docvarsfrom = "filenames", 
+                    docvarnames = c("unit", "docNum"),
+                    dvsep = "_", 
+                    )
+
+cc2 <- corpus(construct)
+rm(construct)
+cc1_tokens <- quanteda::tokens(cc2, remove_punct = T, remove_symbols = T, remove_numbers = T)
+
+# remove stopwords
+cc2_tokens <- tokens_select(cc2_tokens, stopwords("de"), selection = "remove", padding = FALSE)
+
+# DFM
+dfm_cc2 <- dfm(cc2_tokens, tolower = F)
+cc2_freq <- textstat_frequency(dfm_cc2)
+cc2_stop <- subset(cc2_freq, frequency < 3)
+cc2_stop <- cc2_stop$feature
+cc2_tokens <- tokens_select(cc2_tokens, cc2_stop, selection = "remove", padding = FALSE)
+dfm_cc2 <- dfm(cc2_tokens, tolower = T)
+cc2_freq <- textstat_frequency(dfm_cc2)
+rm(construct)
+```
+
+# Construct 3 - Dictionary
+```{r}
+#adjust to the txt folder in the applicable partner folder
+mypath = "/Users/martinrehm/Documents/Rese@rch/network(s)/Uni Bern/OnlineModul/NLP_Workshop/dictionaries/construct3/"
+path_data <- system.file(mypath, package = "readtext")
+construct <- readtext(paste0(mypath),
+                    docvarsfrom = "filenames", 
+                    docvarnames = c("unit", "docNum"),
+                    dvsep = "_", 
+                    )
+
+cc3 <- corpus(construct)
+rm(construct)
+cc3_tokens <- quanteda::tokens(cc3, remove_punct = T, remove_symbols = T, remove_numbers = T)
+
+# remove stopwords
+cc3_tokens <- tokens_select(cc3_tokens, stopwords("de"), selection = "remove", padding = FALSE)
+
+# DFM
+dfm_cc3 <- dfm(cc3_tokens, tolower = F)
+cc3_freq <- textstat_frequency(dfm_cc3)
+cc3_stop <- subset(cc3_freq, frequency < 3)
+cc3_stop <- cc3_stop$feature
+cc3_tokens <- tokens_select(cc3_tokens, cc3_stop, selection = "remove", padding = FALSE)
+dfm_cc3 <- dfm(cc3_tokens, tolower = T)
+cc3_freq <- textstat_frequency(dfm_cc3)
+rm(construct)
+```
+
+# Construct 4 - Dictionary
+```{r}
+#adjust to the txt folder in the applicable partner folder
+mypath = "/Users/martinrehm/Documents/Rese@rch/network(s)/Uni Bern/OnlineModul/NLP_Workshop/dictionaries/construct4/"
+path_data <- system.file(mypath, package = "readtext")
+construct <- readtext(paste0(mypath),
+                    docvarsfrom = "filenames", 
+                    docvarnames = c("unit", "docNum"),
+                    dvsep = "_", 
+                    )
+
+cc4 <- corpus(construct)
+rm(construct)
+cc4_tokens <- quanteda::tokens(cc4, remove_punct = T, remove_symbols = T, remove_numbers = T)
+
+# remove stopwords
+cc4_tokens <- tokens_select(cc4_tokens, stopwords("de"), selection = "remove", padding = FALSE)
+
+# DFM
+dfm_cc4 <- dfm(cc4_tokens, tolower = F)
+cc4_freq <- textstat_frequency(dfm_cc4)
+cc4_stop <- subset(cc4_freq, frequency < 3)
+cc4_stop <- cc4_stop$feature
+cc4_tokens <- tokens_select(cc4_tokens, cc4_stop, selection = "remove", padding = FALSE)
+dfm_cc4 <- dfm(cc4_tokens, tolower = T)
+cc4_freq <- textstat_frequency(dfm_cc4)
+rm(construct)
+```
+
+# Construct 5 - Dictionary
+```{r}
+#adjust to the txt folder in the applicable partner folder
+mypath = "/Users/martinrehm/Documents/Rese@rch/network(s)/Uni Bern/OnlineModul/NLP_Workshop/dictionaries/construct5/"
+path_data <- system.file(mypath, package = "readtext")
+construct <- readtext(paste0(mypath),
+                    docvarsfrom = "filenames", 
+                    docvarnames = c("unit", "docNum"),
+                    dvsep = "_", 
+                    )
+
+cc5 <- corpus(construct)
+rm(construct)
+cc5_tokens <- quanteda::tokens(cc5, remove_punct = T, remove_symbols = T, remove_numbers = T)
+
+# remove stopwords
+cc5_tokens <- tokens_select(cc5_tokens, stopwords("de"), selection = "remove", padding = FALSE)
+
+# DFM
+dfm_cc5 <- dfm(cc5_tokens, tolower = F)
+cc5_freq <- textstat_frequency(dfm_cc5)
+cc5_stop <- subset(cc5_freq, frequency < 3)
+cc5_stop <- cc5_stop$feature
+cc5_tokens <- tokens_select(cc5_tokens, cc5_stop, selection = "remove", padding = FALSE)
+dfm_cc5 <- dfm(cc5_tokens, tolower = T)
+cc5_freq <- textstat_frequency(dfm_cc5)
+rm(construct)
+```
+
+# convert Transcripts into Corpora
+```{r}
+tc1 <- readtext("/Users/martinrehm/Documents/Rese@rch/network(s)/Uni Bern/OnlineModul/NLP_Workshop/dictionaries/interview1/Interview1_clean.txt",
+                    docvarsfrom = "filenames", 
+                    docvarnames = c("unit", "docNum"),
+                    dvsep = "_",) 
+tc1_corpus <-  corpus(tc1)
+
+tc2 <- readtext("/Users/martinrehm/Documents/Rese@rch/network(s)/Uni Bern/OnlineModul/NLP_Workshop/dictionaries/interview2/Interview2_clean.txt",
+                    docvarsfrom = "filenames", 
+                    docvarnames = c("unit", "docNum"),
+                    dvsep = "_",) 
+tc2_corpus <-  corpus(tc2)
+
+rm(tc1,
+   tc2)
+```
+
+# Similarity - Interviews - cc1
+```{r}
+tc1cc1 <- cc1 + tc1_corpus
+tc2cc1 <- cc1 + tc2_corpus
+
+x <- list(tc1cc1,
+          tc2cc1)
+
+similarity <- NULL
+for (i in x) {
+corpus <- quanteda::tokens(i, remove_punct = T, remove_symbols = T, remove_numbers = T)
+corpus <- tokens_select(corpus, stopwords("de"), selection = "remove", padding = FALSE)
+corpus <- tokens_group(corpus, groups = unit)
+corpus <- dfm(corpus)
+sim <- as.data.frame(textstat_simil(corpus, method = "cosine"))
+sim <- sim[,c(1,3)]
+colnames(sim) <- c("Interview", "similarity")
+similarity <- rbind(similarity, sim)
+}
+
+similarity_cc1 <- similarity %>%
+                    mutate(rank = dense_rank(desc(similarity)),
+                           cc = "1")
+
+rm(corpus, i, mypath, path_data, sim, similarity, x)
+```
+
+# Similarity - Interviews - cc2
+```{r}
+tc1cc2 <- cc2 + tc1_corpus
+tc2cc2 <- cc2 + tc2_corpus
+
+x <- list(tc1cc2,
+          tc2cc2)
+
+similarity <- NULL
+for (i in x) {
+corpus <- quanteda::tokens(i, remove_punct = T, remove_symbols = T, remove_numbers = T)
+corpus <- tokens_select(corpus, stopwords("de"), selection = "remove", padding = FALSE)
+corpus <- tokens_group(corpus, groups = unit)
+corpus <- dfm(corpus)
+sim <- as.data.frame(textstat_simil(corpus, method = "cosine"))
+sim <- sim[,c(1,3)]
+colnames(sim) <- c("Interview", "similarity")
+similarity <- rbind(similarity, sim)
+}
+
+similarity_cc2 <- similarity %>%
+                    mutate(rank = dense_rank(desc(similarity)),
+                           cc = "2")
+
+rm(corpus, i, mypath, path_data, sim, similarity, x)
+```
+
+# Similarity - Interviews - cc3
+```{r}
+tc1cc3 <- cc3 + tc1_corpus
+tc2cc3 <- cc3 + tc2_corpus
+
+x <- list(tc1cc3,
+          tc2cc3)
+
+similarity <- NULL
+for (i in x) {
+corpus <- quanteda::tokens(i, remove_punct = T, remove_symbols = T, remove_numbers = T)
+corpus <- tokens_select(corpus, stopwords("de"), selection = "remove", padding = FALSE)
+corpus <- tokens_group(corpus, groups = unit)
+corpus <- dfm(corpus)
+sim <- as.data.frame(textstat_simil(corpus, method = "cosine"))
+sim <- sim[,c(1,3)]
+colnames(sim) <- c("Interview", "similarity")
+similarity <- rbind(similarity, sim)
+}
+
+similarity_cc3 <- similarity %>%
+                    mutate(rank = dense_rank(desc(similarity)),
+                           cc = "3")
+
+rm(corpus, i, mypath, path_data, sim, similarity, x)
+```
+
+# Similarity - Interviews - cc4
+```{r}
+tc1cc4 <- cc4 + tc1_corpus
+tc2cc4 <- cc4 + tc2_corpus
+
+x <- list(tc1cc4,
+          tc2cc4)
+
+similarity <- NULL
+for (i in x) {
+corpus <- quanteda::tokens(i, remove_punct = T, remove_symbols = T, remove_numbers = T)
+corpus <- tokens_select(corpus, stopwords("de"), selection = "remove", padding = FALSE)
+corpus <- tokens_group(corpus, groups = unit)
+corpus <- dfm(corpus)
+sim <- as.data.frame(textstat_simil(corpus, method = "cosine"))
+sim <- sim[,c(1,3)]
+colnames(sim) <- c("Interview", "similarity")
+similarity <- rbind(similarity, sim)
+}
+
+similarity_cc4 <- similarity %>%
+                    mutate(rank = dense_rank(desc(similarity)),
+                           cc = "4")
+
+rm(corpus, i, mypath, path_data, sim, similarity, x)
+```
+
+# Similarity - Interviews - cc5
+```{r}
+tc1cc5 <- cc5 + tc1_corpus
+tc2cc5 <- cc5 + tc2_corpus
+
+x <- list(tc1cc5,
+          tc2cc5)
+
+similarity <- NULL
+for (i in x) {
+corpus <- quanteda::tokens(i, remove_punct = T, remove_symbols = T, remove_numbers = T)
+corpus <- tokens_select(corpus, stopwords("de"), selection = "remove", padding = FALSE)
+corpus <- tokens_group(corpus, groups = unit)
+corpus <- dfm(corpus)
+sim <- as.data.frame(textstat_simil(corpus, method = "cosine"))
+sim <- sim[,c(1,3)]
+colnames(sim) <- c("Interview", "similarity")
+similarity <- rbind(similarity, sim)
+}
+
+similarity_cc5 <- similarity %>%
+                    mutate(rank = dense_rank(desc(similarity)),
+                           cc = "5")
+
+rm(corpus, i, mypath, path_data, sim, similarity, x)
+```
+
+# combine similarity measures
+```{r}
+sim <- rbind(similarity_cc1, similarity_cc2, similarity_cc3, similarity_cc4, similarity_cc5)
+```
+
+# ngrams
+```{r}
+tokens <- quanteda::tokens(tc1_corpus, remove_punct = T, remove_symbols = T, remove_numbers = T)
+bigrams <- tokens_ngrams(tokens, n = 2, concatenator = " ")
+bigrams <- data.frame(unlist(bigrams))
+
+trigrams <- tokens_ngrams(tokens, n = 3, concatenator = " ")
+trigrams <- data.frame(unlist(trigrams))
+
+toks_skip <- tokens_ngrams(tokens, n = 2, concatenator = " ", skip = 1:3)
+toks_skip <- data.frame(unlist(toks_skip))
+```
